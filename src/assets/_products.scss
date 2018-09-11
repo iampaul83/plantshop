@@ -23,7 +23,7 @@
       font-weight: 500;
       line-height: 1.2em;
   }
-   .badge{
+  .badge{
     margin-top: 0.1rem;
     font-weight: 300;
   }
@@ -48,3 +48,9 @@
   }
 }
 
+.list-group-item{
+  color:#808d92;
+  border-style: dashed;
+  margin-bottom: 5px;
+  border-radius: 50px !important;
+}

@@ -1,29 +1,21 @@
 <template>
 <div>
 <div class="container main-contant mb-1">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-3">
       <!-- 左側選單 (List group) -->
       <div class="list-group sticky-top">
         <a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-gold">
-          <i class="fa fa-suitcase" aria-hidden="true"></i> 金牌專賣店</a>
+          <i class="fa fa-suitcase" aria-hidden="true"></i> 全部商品</a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
-          <i class="fa fa-gift" aria-hidden="true"></i> 禮品區</a>
+          <i class="fa fa-gift" aria-hidden="true"></i> 植栽盆栽</a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
+          <i class="fa fa-gift" aria-hidden="true"></i> 擺飾花瓶</a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
+          <i class="fa fa-gift" aria-hidden="true"></i> 吊掛盆栽</a>
       </div>
     </div>
     <div class="col-md-9">
-      <div class="d-flex mb-4">
-        <!-- Search bar -->
-        <form class="form-inline my-3 my-lg-0">
-          <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-outline-warning" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i> Search</button>
-            </div>
-          </div>
-        </form>
-      </div>
       <!-- 主要商品列表 (Card) -->
       <div class="tab-content">
         <div class="tab-pane active" id="list-gold">

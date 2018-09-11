@@ -45,7 +45,7 @@ export default {
   methods: {
     getProduct (page = 1) {
       const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       vm.isLoading = true
       this.axios.get(api).then((res) => {
         console.log(res.data)

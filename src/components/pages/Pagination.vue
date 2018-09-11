@@ -2,7 +2,7 @@
 <nav aria-label="Page navigation" class="my-5">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-caret-left"></i></a>
     </li>
     <li class="page-item">
       <a class="page-link" href="#">1</a>
@@ -14,7 +14,7 @@
       <a class="page-link" href="#">3</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+      <a class="page-link" href="#"><i class="fas fa-caret-right"></i></a>
     </li>
   </ul>
 </nav>
