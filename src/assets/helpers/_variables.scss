@@ -3,6 +3,47 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
+// font
+/*
+* Noto Sans TC (Chinese_traditional) http://www.google.com/fonts/earlyaccess
+ */
+@mixin width($width, $height: $width){
+  width: $width;
+  height: $height;
+}
+
+@font-face {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.otf) format('opentype');
+}
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 400;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 500;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 700;
+   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format('opentype');
+ }
 
 //
 // Color system
@@ -70,10 +111,10 @@ $colors: map-merge(
   $colors
 );
 
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$primary:       #04a2a3 !default;
+$secondary:     #ebac3e !default;
 $success:       $green !default;
-$info:          $cyan !default;
+$info:          #fc8a52 !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
@@ -102,7 +143,7 @@ $theme-color-interval:      8% !default;
 $yiq-contrasted-threshold:  150 !default;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
-$yiq-text-dark:             $gray-900 !default;
+$yiq-text-dark:             #415970 !default;
 $yiq-text-light:            $white !default;
 
 // Options
@@ -159,7 +200,7 @@ $sizes: map-merge(
 // Settings for the `<body>` element.
 
 $body-bg:                   $white !default;
-$body-color:                $gray-900 !default;
+$body-color:                #767676 !default;
 
 // Links
 //
@@ -248,7 +289,7 @@ $transition-collapse:         height .35s ease !default;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, Roboto, "Noto Sans TC","Segoe UI","Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
@@ -368,8 +409,7 @@ $input-btn-border-width:      $border-width !default;
 
 // Buttons
 //
-// For each of Bootstrap's buttons, define text, background, and border color.
-
+// For each of Bootstrap's buttons, define text, background, and border color.                 
 $btn-padding-y:               $input-btn-padding-y !default;
 $btn-padding-x:               $input-btn-padding-x !default;
 $btn-line-height:             $input-btn-line-height !default;

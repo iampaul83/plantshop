@@ -1,0 +1,50 @@
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    &:hover{
+    box-shadow:0 8px 24px #e2e2e2;
+    }
+}
+.card-title {
+    font-size: 1.1rem;
+    line-height: 1.4
+}
+.card-text{
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  font-size: 0.9rem;
+}
+.card-body{
+    padding: 1rem 1.25rem 0.75rem;
+    .orginPrice {
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.2em;
+  }
+   .badge{
+    margin-top: 0.1rem;
+    font-weight: 300;
+  }
+}
+.btn-cart{
+  @include width(42px,40px);
+  border-radius: 50px;
+  &:hover{
+    .icon-cart{
+      path{
+        fill:$white;
+        stroke:$white;
+      }
+    }
+  }
+  .icon-cart{
+    @include width(25px)
+      path{
+        fill: $info;
+        stroke: $info;
+      }
+  }
+}
+

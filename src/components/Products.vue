@@ -9,12 +9,6 @@
           <i class="fa fa-suitcase" aria-hidden="true"></i> 金牌專賣店</a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
           <i class="fa fa-gift" aria-hidden="true"></i> 禮品區</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">
-          <i class="fa fa-film" aria-hidden="true"></i> 影音商品</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">
-          <i class="fa fa-paw" aria-hidden="true"></i> 寵物專用</a>
-        <a href="#" class="list-group-item list-group-item-action disabled">
-          <i class="fa fa-tree" aria-hidden="true"></i> 居家環境</a>
       </div>
     </div>
     <div class="col-md-9">
@@ -33,43 +27,7 @@
       <!-- 主要商品列表 (Card) -->
       <div class="tab-content">
         <div class="tab-pane active" id="list-gold">
-          <div class="row">
-            <div class="col-md-4 mb-4">
-              <div class="card border-0 box-shadow text-center h-100">
-                <img class="card-img-top" src="https://images.unsplash.com/photo-1486250944723-86bca2b15b06?w=1351" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">特工眼鏡</h4>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
-                    is a little bit longer.</p>
-                </div>
-                <div class="card-footer border-top-0 bg-white">
-                  <a href="#" class="btn btn-outline-secondary btn-block btn-sm">
-                    <i class="fa fa-cart-plus" aria-hidden="true"></i> 搶購去
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- pagination -->
-          <nav aria-label="Page navigation" class="my-5">
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
-          </nav>
+              <Product></Product>
         </div>
 
         <div class="tab-pane" id="list-gift">
@@ -94,6 +52,7 @@
         </div>
       </div>
       <!-- tab-content end -->
+      <Pagination></Pagination>
     </div>
   </div>
 </div>
@@ -121,5 +80,16 @@
 </template>
 
 <script>
-export default {}
+import Product from './pages/Product.vue'
+import Pagination from './pages/Pagination.vue'
+export default {
+  data () {
+    return {
+    }
+  },
+  components: {
+    Product,
+    Pagination
+  }
+}
 </script>
