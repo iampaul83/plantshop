@@ -42,7 +42,7 @@ p{
     }
   }
   .icon-cart{
-    @include width(25px)
+    @include width(25px);
       path{
         fill: $info;
         stroke: $info;
@@ -52,7 +52,7 @@ p{
     @include width(65px, 62px);
     margin-top: 25px;
     .icon-cart{
-      @include width(32px)
+      @include width(32px);
     }
   }
 }
