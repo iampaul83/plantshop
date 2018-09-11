@@ -1,3 +1,6 @@
+p{
+  font-size: 0.9rem;
+}
 .card {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     &:hover{
@@ -14,7 +17,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
-  font-size: 0.9rem;
 }
 .card-body{
     padding: 1rem 1.25rem 0.75rem;
@@ -46,6 +48,13 @@
         stroke: $info;
       }
   }
+  &.btn-cart-detail{
+    @include width(65px, 62px);
+    margin-top: 25px;
+    .icon-cart{
+      @include width(32px)
+    }
+  }
 }
 
 .list-group-item{
@@ -54,3 +63,72 @@
   margin-bottom: 5px;
   border-radius: 50px !important;
 }
+
+.pd-wrapper {
+  padding-right: $pd-distance;
+  .pd-img{
+    position: relative;
+    &:after{
+      content: "";
+      position: absolute;
+     bottom: -40px;
+      background: #fff8ec;
+      left: -500px;
+      right: -$pd-distance;
+      top: 50px;
+      z-index: -2;
+    }
+  }
+}
+
+.pd-title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: $primary;
+  border-bottom: 1px solid $gray-200;
+  span{
+    position: relative;
+    &:after{
+      content:'';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background:$gray-500 ;
+    }
+  }
+}
+
+.pd-category {
+  background: lighten( $secondary,5%);
+  border-radius: 3px;
+  color: $white;
+  padding: 2px 5px;
+}
+
+.pd-instruction{
+  border-bottom: 1px solid $gray-200;
+  .pd-instruction-title {
+    font-size: 1.05rem;
+    color: #04a2a3;
+    font-weight: 400;
+}
+p{
+  line-height: 1.6em;
+}
+}
+
+.countBtn-group{
+  border: 1px solid $gray-400;
+  border-radius: 25px;
+  overflow: hidden;
+  input{
+    max-width: 150px;
+  }
+  button{
+    color: #447389;
+    font-size: 0.8rem;
+  }
+}
+

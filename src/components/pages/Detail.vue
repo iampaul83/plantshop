@@ -1,22 +1,36 @@
 <template>
-<div class="row">
+  <div class="container main-contant mb-1 my-5">
 <loading :active.sync="isLoading" ></loading>
-<div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
-  <div class="card border-0" >
-    <a href="javascript:;" @click.prevent="viewDetail(item.id)" style="height: 150px; background-size: cover; background-position: center" :style="{backgroundImage : `url(${item.imageUrl})`}">
-    </a>
-    <div class="card-body">
-      <span class="badge badge-secondary text-white mb-2">{{item.category}}</span>
-      <h5 class="card-title">
-        <a href="javascript:;" @click.prevent="viewDetail(item.id)" class="text-primary">{{item.title}}</a>
-      </h5>
-      <p class="card-text">{{item.content}}</p>
-      <footer class="d-flex justify-content-center mt-2">
-      <div class="price-box d-flex  flex-column">
-        <del class="orginPrice">{{item.originPrice | currency}}</del>
-        <div class="h5 text-success">{{item.price  | currency}}</div>
+    <div class="row">
+      <div class="col-md-7">
+      <div class="pd-wrapper">
+      <div class="pd-img shadow">
+        <img :src="product.imageUrl" class="w-100" alt="">
       </div>
-      <button type="button" class="align-self-top btn ml-auto btn-outline-info justify-content-center btn-sm btn-cart">
+      </div>
+      </div>
+      <div class="col-md-5 mb-5">
+        <div class="sticky-top" style="top: 10px;">
+        <small class="pd-category">{{product.category}}</small>
+          <h1 class="pd-title mt-1"><span class=" py-4 d-inline-block">{{product.title}}</span>
+          </h1>
+           <div class="mt-4">
+           <div class="pd-instruction mb-2 pb-2">
+          <h2 class="pd-instruction-title">【產品說明】</h2>
+          <p>{{product.content}}</p>
+        </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div  class="d-inline-flex flex-column">
+            <div class="d-inline-flex my-3 align-items-baseline">
+              <div class="h3 mb-0 text-success">
+                {{product.price  | currency}}
+              </div>
+              <del class="text-muted pl-1">{{product.originPrice  | currency}}</del>
+            </div>
+            <Numcoount class="align-self-center" @buyAmount="buyAmount"></Numcoount>
+          </div>
+        <button type="button" class="align-self-top btn ml-auto btn-outline-info justify-content-center btn-sm btn-cart btn-cart-detail">
         <!-- <i class="fas fa-spinner fa-spin"></i> -->
         <i class="d-inline-block icon-cart">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 386">
@@ -24,44 +38,48 @@
         </svg>
         </i>
       </button>
-    </footer >
+        </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 </div>
 </template>
 
 <script>
+import Numcoount from './Numcount.vue'
+
 export default {
   data () {
     return {
-      products: [],
-      isLoading: false
+      product: {},
+      isLoading: false,
+      pdId: '',
+      buyNum: 1
     }
   },
   created () {
-    this.getProduct()
+    this.pdId = this.$route.params.product_id
+    this.getProdust(this.pdId)
+  },
+  components: {
+    Numcoount
   },
   methods: {
-    getProduct (page = 1) {
+    getProdust (Id) {
       const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${Id}`
       vm.isLoading = true
       this.axios.get(api).then((res) => {
         console.log(res.data)
         if (res.data.success) {
-          vm.products = Object.assign([], res.data.products)
+          vm.product = Object.assign({}, res.data.product)
           vm.isLoading = false
         }
       })
     },
-    viewDetail (id) {
-      this.$router.push(`/products/${id}`)
+    buyAmount (num) {
+      this.buyNum = num
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

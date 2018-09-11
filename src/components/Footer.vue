@@ -1,5 +1,5 @@
 <template>
-<footer class="bg-light text-muted py-5">
+<footer class="bg-light text-muted py-5 mt-5">
     <div class="container">
       <ul class="list-inline text-center">
         <li class="list-inline-item">© Copright 2017 六角血拼賣賣</li>
