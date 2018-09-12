@@ -6,13 +6,13 @@
     <div class="col-md-3">
       <!-- 左側選單 (List group) -->
       <div class="list-group sticky-top">
-        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-gold">
+        <a class="list-group-item list-group-item-action active" @click="category = 'all'" data-toggle="list" href="#list-gold">
           <i class="fa fa-gift" aria-hidden="true"></i>  全部商品</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
+        <a class="list-group-item list-group-item-action"  @click="category = '植栽盆栽'" data-toggle="list" href="#list-gift">
          <i class="fab fa-gripfire"></i> 植栽盆栽</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
+        <a class="list-group-item list-group-item-action"  @click="category = '擺飾花瓶'"  data-toggle="list" href="#list-gift">
           <i class="fas fa-award"></i> 擺飾花瓶</a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
+        <a class="list-group-item list-group-item-action"  @click="category = '吊掛盆栽'" data-toggle="list" href="#list-gift">
           <i class="fas fa-grip-horizontal"></i> 吊掛盆栽</a>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <!-- 主要商品列表 (Card) -->
       <div class="tab-content">
         <div class="tab-pane active" id="list-gold">
-              <Product></Product>
+              <Product :category="category"></Product>
         </div>
 
         <div class="tab-pane" id="list-gift">
@@ -79,10 +79,12 @@ import Slider from './pages/slider.vue'
 export default {
   data () {
     return {
+      category: 'all'
     }
   },
   components: {
     Product,
+    Pagination,
     Pagination,
     Slider
   }

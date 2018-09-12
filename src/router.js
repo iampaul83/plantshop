@@ -24,22 +24,22 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: '/products',
+          path: 'products',
           name: 'products',
           component: Products
         },
         {
-          path: '/products/:product_id',
+          path: 'products/:product_id',
           name: 'detail',
           component: Detail
         },
         {
-          path: '/discount',
+          path: 'discount',
           name: 'discount',
           component: Discount
         },
         {
-          path: '/cart',
+          path: 'cart',
           name: 'cart',
           component: Cart
         }
@@ -55,20 +55,20 @@ export default new Router({
       component: Dashboard,
       children: [
         {
-          path: '/coupon',
-          name: 'coupon',
+          path: 'coupons',
+          name: 'coupons',
           component: AdminCoupon,
           meta: { requiresAuth: true }
         },
         {
-          path: '/items',
+          path: 'items',
           name: 'items',
           component: AdminItems,
           meta: { requiresAuth: true }
         },
         {
-          path: '/order',
-          name: 'order',
+          path: 'orders',
+          name: 'orders',
           component: AdminOrder,
           meta: { requiresAuth: true }
         }
@@ -76,7 +76,7 @@ export default new Router({
     },
     {
       path: '*',
-      directives: '/products'
+      redirect: '/products'
     }
   ]
 })

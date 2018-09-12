@@ -7,7 +7,7 @@
     </a>
     <div class="card-body">
       <span class="badge badge-secondary text-white mb-2">{{item.category}}</span>
-      <h5 class="card-title">
+      <h5 class="card-title"> 
         <a href="javascript:;" @click.prevent="viewDetail(item.id)" class="text-primary">{{item.title}}</a>
       </h5>
       <p class="card-text">{{item.content}}</p>
@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  props: ['category'],
   data () {
     return {
       products: [],
