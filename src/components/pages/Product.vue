@@ -1,13 +1,12 @@
 <template>
 <div class="row">
-<loading :active.sync="isLoading" ></loading>
 <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
   <div class="card border-0" >
     <a href="javascript:;" @click.prevent="viewDetail(item.id)" style="height: 150px; background-size: cover; background-position: center" :style="{backgroundImage : `url(${item.imageUrl})`}">
     </a>
     <div class="card-body">
       <span class="badge badge-secondary text-white mb-2">{{item.category}}</span>
-      <h5 class="card-title"> 
+      <h5 class="card-title">
         <a href="javascript:;" @click.prevent="viewDetail(item.id)" class="text-primary">{{item.title}}</a>
       </h5>
       <p class="card-text">{{item.content}}</p>
@@ -26,43 +25,22 @@
       </button>
     </footer >
     </div>
-  </div>
+</div>
 </div>
 </div>
 </template>
 
 <script>
 export default {
-  props: ['category'],
+  props: ['products'],
   data () {
     return {
-      products: [],
-      isLoading: false
     }
   },
-  created () {
-    this.getProduct()
-  },
   methods: {
-    getProduct (page = 1) {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      vm.isLoading = true
-      this.axios.get(api).then((res) => {
-        console.log(res.data)
-        if (res.data.success) {
-          vm.products = Object.assign([], res.data.products)
-          vm.isLoading = false
-        }
-      })
-    },
     viewDetail (id) {
       this.$router.push(`/products/${id}`)
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

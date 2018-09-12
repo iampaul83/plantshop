@@ -1,55 +1,30 @@
 <template>
 <div>
+<loading :active.sync="isLoading" ></loading>
 <div class="container mb-1">
 <Slider/>
   <div class="row mt-5">
     <div class="col-md-3">
       <!-- 左側選單 (List group) -->
       <div class="list-group sticky-top">
-        <a class="list-group-item list-group-item-action active" @click="category = 'all'" data-toggle="list" href="#list-gold">
-          <i class="fa fa-gift" aria-hidden="true"></i>  全部商品</a>
-        <a class="list-group-item list-group-item-action"  @click="category = '植栽盆栽'" data-toggle="list" href="#list-gift">
-         <i class="fab fa-gripfire"></i> 植栽盆栽</a>
-        <a class="list-group-item list-group-item-action"  @click="category = '擺飾花瓶'"  data-toggle="list" href="#list-gift">
-          <i class="fas fa-award"></i> 擺飾花瓶</a>
-        <a class="list-group-item list-group-item-action"  @click="category = '吊掛盆栽'" data-toggle="list" href="#list-gift">
-          <i class="fas fa-grip-horizontal"></i> 吊掛盆栽</a>
+        <a href="javascript:;" class="list-group-item list-group-item-action" v-for="item in categoryList" :key="item"  @click.prevent="category = item" :class="{'active': category == item}" data-toggle="list" >
+          <i class="fa fa-gift" aria-hidden="true"></i> {{item}}</a>
       </div>
     </div>
     <div class="col-md-9">
       <!-- 主要商品列表 (Card) -->
       <div class="tab-content">
-        <div class="tab-pane active" id="list-gold">
-              <Product :category="category"></Product>
+        <div class="tab-pane active" v-if="category == '全部商品'" >
+          <Product :products="pageProduct"></Product>
+          <Pagination :page="pagination" @goToPage="changePage"></Pagination>
         </div>
-
-        <div class="tab-pane" id="list-gift">
-          <div class="row align-items-stretch">
-            <!-- 禮品 -->
-            <div class="col-md-4 mb-4">
-              <div class="card border-0 box-shadow text-center h-100">
-                <img class="card-img-top" src="https://images.unsplash.com/photo-1482173074468-5b323335debe?w=1350" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">超精緻禮物</h4>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
-                    is a little bit longer.</p>
-                </div>
-                <div class="card-footer border-top-0 bg-white">
-                  <a href="#" class="btn btn-outline-secondary btn-block btn-sm">
-                    <i class="fa fa-cart-plus" aria-hidden="true"></i> 搶購去
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="tab-pane active" v-else>
+          <Product :products="products.filter(item => item.category == category)"></Product>
         </div>
       </div>
-      <!-- tab-content end -->
-      <Pagination></Pagination>
     </div>
   </div>
 </div>
-
   <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -79,14 +54,57 @@ import Slider from './pages/slider.vue'
 export default {
   data () {
     return {
-      category: 'all'
+      category: '全部商品',
+      pageProduct: [],
+      products: [],
+      pagination: [],
+      isLoading: false,
+      categoryList: []
     }
   },
   components: {
     Product,
     Pagination,
-    Pagination,
     Slider
+  },
+  created () {
+    this.getProductAll()
+    this.getPageProduct()
+  },
+  methods: {
+    getProductAll () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
+      vm.isLoading = true
+      // 取得產品分類
+      this.axios.get(api).then((res) => {
+        if (res.data.success) {
+          vm.categoryList = res.data.products.map((item) => item.category)
+            .filter((item, index, arr) => {
+              return arr.indexOf(item) === index
+            })
+          vm.categoryList.unshift('全部商品')
+          vm.products = Object.assign([], res.data.products)
+          vm.isLoading = false
+        }
+      })
+    },
+    getPageProduct (page = 1) {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
+      vm.isLoading = true
+      // 取得每頁產品分類
+      this.axios.get(api).then((res) => {
+        if (res.data.success) {
+          vm.pageProduct = Object.assign([], res.data.products)
+          vm.pagination = Object.assign([], res.data.pagination)
+          vm.isLoading = false
+        }
+      })
+    },
+    changePage (data) {
+      this.getPageProduct(data)
+    }
   }
 }
 </script>

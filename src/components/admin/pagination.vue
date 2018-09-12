@@ -1,6 +1,6 @@
 <template>
- <nav aria-label="Page navigation example">
- <ul class="pagination">
+ <nav aria-label="Page navigation"  class="my-3">
+ <ul class="pagination justify-content-center">
     <li class="page-item"  :class="{'disabled' : !page.has_pre}" >
       <a class="page-link" @click.prevent="prePage(page.current_page)" href="javascript:;" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
