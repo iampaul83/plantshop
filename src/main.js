@@ -14,6 +14,24 @@ Vue.config.productionTip = false
 Vue.component('loading', Loading)
 Vue.filter('currency', Currency)
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    console.log('這裡需要驗證')
+    const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
+    axois.post(api).then( (res) => {
+      if (res.data.success) {
+        next()
+      } else {
+        next({
+          path: '/login'
+        })
+      }
+    })
+  } else {
+    next()
+  }
+})
+
 new Vue({
   router,
   render: h => h(App)

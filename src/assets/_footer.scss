@@ -1,0 +1,19 @@
+
+
+.footer{
+  border-top: 1px solid $gray-300;
+}
+
+.contact-info{
+  font-size: 1.7rem;
+  margin-top: 15px;
+  margin-bottom:5px;
+  li{
+    @include width(42px);
+    color: $primary;
+  }
+}
+
+.copyright{
+  font-size: 0.78rem;
+}

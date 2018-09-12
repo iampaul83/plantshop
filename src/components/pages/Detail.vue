@@ -1,5 +1,5 @@
 <template>
-  <div class="container main-contant mb-1 my-5">
+  <div class="container  detail-page mt-5">
 <loading :active.sync="isLoading" ></loading>
     <div class="row">
       <div class="col-md-7">
@@ -47,6 +47,7 @@
 
 <script>
 import Numcoount from './Numcount.vue'
+import Slider from './slider.vue'
 
 export default {
   data () {
@@ -62,7 +63,8 @@ export default {
     this.getProdust(this.pdId)
   },
   components: {
-    Numcoount
+    Numcoount,
+    Slider
   },
   methods: {
     getProdust (Id) {

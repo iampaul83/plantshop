@@ -1,21 +1,25 @@
 <template>
-<footer class="bg-light text-muted py-5 mt-5">
+<footer class="footer py-3 mt-5">
     <div class="container">
-      <ul class="list-inline text-center">
-        <li class="list-inline-item">© Copright 2017 六角血拼賣賣</li>
+      <ul class="list-inline text-center contact-info">
         <li class="list-inline-item">
-          <a class="text-info" href="#">
-            <i class="fa fa-instagram" aria-hidden="true"></i> Instagrame</a>
+          <a class="text-primary" href="#">
+            <i class="fab fa-facebook-f"></i></a>
         </li>
         <li class="list-inline-item">
-          <a class="text-info" href="#">
-            <i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a>
+          <a class="text-primary" href="#">
+            <i class="fab fa-github"></i></a>
         </li>
         <li class="list-inline-item">
-          <a class="text-info" href="#">About</a>
+          <a class="text-primary" href="#">
+            <i class="fab fa-instagram"></i></a>
+        </li>
+         <li class="list-inline-item">
+          <a class="text-primary" href="mailto:qvod100203006@gmail.com"  type="mail">
+            <i class="fas fa-envelope"></i></a>
         </li>
       </ul>
-      <p class="text-center">Made with Bootstrap4</p>
+      <p class="text-center copyright">©Copright 2018   <a  href="mailto:qvod100203006@gmail.com"  type="mail">Chao-YuPing</a></p>
     </div>
   </footer>
 </template>

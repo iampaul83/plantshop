@@ -1,5 +1,5 @@
 <template>
-<nav aria-label="Page navigation" class="my-5">
+<nav aria-label="Page navigation" class="my-3">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
       <a class="page-link" href="#" tabindex="-1"><i class="fas fa-caret-left"></i></a>

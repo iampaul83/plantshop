@@ -890,8 +890,8 @@ $progress-bar-transition:           width .6s ease !default;
 
 // List group
 
-$list-group-bg:                     rgba($bgColor, 0.29) !default;
-$list-group-border-color:           lighten($secondary, 15%) !default;
+$list-group-bg:                     $white !default;
+$list-group-border-color:           $primary !default;
 $list-group-border-width:           $border-width !default;
 $list-group-border-radius:          0 !default;
 
@@ -900,7 +900,7 @@ $list-group-item-padding-x:         1.25rem !default;
 
 $list-group-hover-bg:               $bgColor !default;
 $list-group-active-color:           $component-active-color !default;
-$list-group-active-bg:              $component-active-bg !default;
+$list-group-active-bg:              lighten($primary, 6%) !default;
 $list-group-active-border-color:    $list-group-active-bg !default;
 
 $list-group-disabled-color:         $gray-600 !default;

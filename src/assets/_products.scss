@@ -1,6 +1,9 @@
 p{
   font-size: 0.9rem;
 }
+.detail-page{
+  margin-bottom:90px;
+}
 .card {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     &:hover{
@@ -58,7 +61,7 @@ p{
 }
 
 .list-group-item{
-  color:#808d92;
+  color:$primary;
   border-style: dashed;
   margin-bottom: 5px;
   border-radius: 50px !important;
@@ -82,7 +85,7 @@ p{
 }
 
 .pd-title {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: $primary;
   border-bottom: 1px solid $gray-200;

@@ -1,18 +1,19 @@
 <template>
 <div>
-<div class="container main-contant mb-1">
+<div class="container mb-1">
+<Slider/>
   <div class="row mt-5">
     <div class="col-md-3">
       <!-- 左側選單 (List group) -->
       <div class="list-group sticky-top">
         <a class="list-group-item list-group-item-action active" data-toggle="list" href="#list-gold">
-          <i class="fa fa-suitcase" aria-hidden="true"></i> 全部商品</a>
+          <i class="fa fa-gift" aria-hidden="true"></i>  全部商品</a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
-          <i class="fa fa-gift" aria-hidden="true"></i> 植栽盆栽</a>
+         <i class="fab fa-gripfire"></i> 植栽盆栽</a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
-          <i class="fa fa-gift" aria-hidden="true"></i> 擺飾花瓶</a>
+          <i class="fas fa-award"></i> 擺飾花瓶</a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-gift">
-          <i class="fa fa-gift" aria-hidden="true"></i> 吊掛盆栽</a>
+          <i class="fas fa-grip-horizontal"></i> 吊掛盆栽</a>
       </div>
     </div>
     <div class="col-md-9">
@@ -74,6 +75,7 @@
 <script>
 import Product from './pages/Product.vue'
 import Pagination from './pages/Pagination.vue'
+import Slider from './pages/slider.vue'
 export default {
   data () {
     return {
@@ -81,7 +83,8 @@ export default {
   },
   components: {
     Product,
-    Pagination
+    Pagination,
+    Slider
   }
 }
 </script>
