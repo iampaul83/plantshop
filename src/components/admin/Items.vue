@@ -131,7 +131,7 @@
 
 <script>
 import $ from 'jquery'
-import Pagination from './pagination.vue'
+import Pagination from '../pages/Pagination.vue'
 
 export default{
   data () {

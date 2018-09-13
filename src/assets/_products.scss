@@ -81,6 +81,33 @@ p{
       top: 50px;
       z-index: -2;
     }
+    .btn-back {
+      position: absolute;
+      left: -20px;
+      z-index: 2;
+      bottom: -15px;
+      padding:2px 15px 2px 25px;
+      &:hover{
+        text-decoration: none;
+      }
+      &:after{
+        position: absolute;
+        content:'';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 2px solid $primary;
+      }
+      &:before{
+        position: absolute;
+        content: '';
+        bottom: 6px;
+        left: -1px;
+        width: 15px;
+        transform: rotate(-45deg);
+        border-bottom: 2px solid $primary;
+      }
+   }
   }
 }
 
@@ -134,4 +161,3 @@ p{
     font-size: 0.8rem;
   }
 }
-

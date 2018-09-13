@@ -1,9 +1,11 @@
 <template>
 <!-- headers -->
+<div>
+<div class="overlay" @click="toggleCartbox"></div>
 <nav class="navbar navbar-light topNavbar mb-4">
 <div class="container">
 <div class="d-inline-flex topNavbar-link ">
-<router-link to="/products" class="icon-nav icon-home">
+<router-link to="/" class="icon-nav icon-home">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 386">
   <path style="stroke-width:6;stroke-miterlimit:10" d="M415.6 154.4l-195.3-143c-3.8-2.8-8.9-2.8-12.6 0l-195.3 143c-4.8 3.5-5.8 10.2-2.3 15s10.2 5.8 15 2.3L214 33.3l189 138.4c1.9 1.4 4.1 2.1 6.3 2.1 3.3 0 6.5-1.5 8.6-4.4 3.5-4.8 2.5-11.5-2.3-15z"/>
   <path style="stroke-width:6;stroke-miterlimit:10"  d="M363.9 174.1c-5.9 0-10.7 4.8-10.7 10.7v170.4h-85.6v-93c0-29.5-24-53.5-53.5-53.5s-53.5 24-53.5 53.5v93H74.8V184.8c0-5.9-4.8-10.7-10.7-10.7s-10.7 4.8-10.7 10.7v181.1c0 5.9 4.8 10.7 10.7 10.7h107c5.6 0 10.2-4.3 10.7-9.9V262.2c0-17.7 14.4-32.1 32.1-32.1s32.1 14.4 32.1 32.1v104.5c.4 5.5 5 9.9 10.7 9.9h107c5.9 0 10.7-4.8 10.7-10.7V184.8c.2-5.9-4.6-10.7-10.5-10.7z"/>
@@ -26,7 +28,7 @@
 <div class="icon-text">管理商品</div>
 </router-link>
 </div>
-<router-link  class="navbar-brand logo" to="/products">
+<router-link  class="navbar-brand logo" to="/">
   <img src="../assets/images/logo.png" class="img-fluid" alt="">
 </router-link >
 <div class="d-inline-flex align-items-center  topNavbar-link">
@@ -42,14 +44,113 @@
 </svg>
  <div class="icon-text">登&emsp;入</div>
   </router-link>
-  <router-link to="/cart"  class="icon-nav icon-cart">
-    <span class="totalItems">2</span>
+  <div class="cart-dropdown">
+  <a class="icon-nav icon-cart"  @click="toggleCartbox">
+    <span class="totalItems" v-if="cart.carts">{{cart.carts.length}}</span>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 386">
       <path d="M397.1 74.7c-7-8.5-17.5-13.2-28.5-13.2H130.8c-6.8 0-13.3 1.9-18.9 5.4L99.8 24.4c-2-7-8.3-11.8-15.5-11.8H30.5c-6.7 0-12.2 5.4-12.2 12.2v1.3c0 6.7 5.4 12.2 12.2 12.2h46.2l23.6 83.4 32.5 115.1c-18.5 4.6-32.2 21.4-32.2 41.2 0 22.5 17.5 41 39.7 42.4-1.8 5.3-2.7 11.1-2.2 17.1 1.6 20.3 18.2 36.7 38.5 38.1 24.2 1.7 44.5-17.6 44.5-41.4 0-4.8-.8-9.4-2.3-13.7h48.6c-2 5.7-2.8 12-2.1 18.5 2.2 19.7 18.5 35.2 38.3 36.6 24.2 1.7 44.6-17.5 44.6-41.4 0-23.1-19.2-41.6-42.2-41.6H143.4c-7.9 0-14.6-6.2-15-14-.3-8.3 6.3-15.1 14.6-15.1h193.8c16.5 0 30.9-11.3 34.9-27.3L404 106.1c2.9-11.1.3-22.5-6.9-31.4zm-90.5 245.8c7.5 0 13.7 6.2 13.7 13.7 0 7.5-6.2 13.7-13.7 13.7-7.5 0-13.7-6.2-13.7-13.7.1-7.5 6.1-13.7 13.7-13.7zm-127.1 0c7.5 0 13.7 6.2 13.7 13.7 0 7.5-6.2 13.7-13.7 13.7-7.5 0-13.7-6.2-13.7-13.7 0-7.5 6.1-13.7 13.7-13.7zm-50.2-198.8l-6.2-22c-1-3.4.4-5.8 1.4-7 .9-1.2 3-3.2 6.4-3.2H157l7.1 32.3-34.8-.1zm7.8 27.8h33l6.6 29.9h-31.1l-8.5-29.9zm30.3 86.1c-3.6 0-6.8-2.4-7.8-5.9l-6.3-22.4h29.4l6.2 28.2-21.5.1zm69.7 0h-19.7l-6.2-28.2H237l.1 28.2zm0-56.2h-32l-6.6-29.9h38.6v29.9zm0-57.7h-44.6l-7.1-32.3h51.8v32.3zM287 235.6h-22v-28.2h28l-6 28.2zm11.9-56.2H265v-29.9h40.2l-6.3 29.9zM265 121.7V89.3h52.8l-6.8 32.3h-46zm79.8 107.8c-.9 3.6-4.1 6.2-7.8 6.2h-21.4l6-28.2h28.8l-5.6 22zm12.4-50.1h-29.8l6.3-29.9h31l-7.5 29.9zM377 99.3l-5.5 22.2h-32l6.8-32.3h22.9c3.4 0 5.4 1.9 6.3 3.1 1 1.3 2.4 3.8 1.5 7zm0 0"/>
     </svg>
      <div  class="icon-text">購 物 車</div>
-  </router-link>
+  </a>
+  <div class="cart-menu p-3 shadow" >
+        <h6 class="font-weight-light pb-1">已選擇商品</h6>
+        <div class="cart-menu-scroll">
+        <table class="table table-sm">
+          <tbody>
+            <tr v-for="item in cart.carts" :key="item.id">
+              <td class="align-middle text-center">
+                <a href="javascript:;" class="btn-del btn btn-outline-danger" @click.prevent="delCart(item.id)" >
+                  <i class="fas fa-spinner fa-spin" v-if="status.delitem == item.id"></i>
+                  <i class="far fa-trash-alt" v-else></i>
+                </a>
+              </td>
+              <td class="align-middle ">
+              <a class="cart-img mt-2" @click.prevent="viewDetail(item.product_id)" href="javascript:;"  :style="{backgroundImage : `url(${item.product.imageUrl})`}"></a>
+              </td>
+              <td class="align-middle">
+              <a  class="cart-title"  @click.prevent="viewDetail(item.product_id)" href="javascript:;">{{item.product.title}}</a>
+              <div class="cart-unit">{{item.qty}} / {{item.product.unit}}</div>
+              </td>
+              <td class="align-middle text-right cart-money">{{item.total | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="cart-total d-flex justify-content-between pt-1 px-2 pb-2">
+        <span class="">小計</span>
+        <span class="h5 text-success">{{cart.total | currency}}</span>
+        </div>
+        <a href="#" class="btn-checkout btn btn-outline-primary d-flex align-items-center justify-content-center">
+        <div class="cart-icon mb-1 mr-1">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 428 386">
+      <path d="M397.1 74.7c-7-8.5-17.5-13.2-28.5-13.2H130.8c-6.8 0-13.3 1.9-18.9 5.4L99.8 24.4c-2-7-8.3-11.8-15.5-11.8H30.5c-6.7 0-12.2 5.4-12.2 12.2v1.3c0 6.7 5.4 12.2 12.2 12.2h46.2l23.6 83.4 32.5 115.1c-18.5 4.6-32.2 21.4-32.2 41.2 0 22.5 17.5 41 39.7 42.4-1.8 5.3-2.7 11.1-2.2 17.1 1.6 20.3 18.2 36.7 38.5 38.1 24.2 1.7 44.5-17.6 44.5-41.4 0-4.8-.8-9.4-2.3-13.7h48.6c-2 5.7-2.8 12-2.1 18.5 2.2 19.7 18.5 35.2 38.3 36.6 24.2 1.7 44.6-17.5 44.6-41.4 0-23.1-19.2-41.6-42.2-41.6H143.4c-7.9 0-14.6-6.2-15-14-.3-8.3 6.3-15.1 14.6-15.1h193.8c16.5 0 30.9-11.3 34.9-27.3L404 106.1c2.9-11.1.3-22.5-6.9-31.4zm-90.5 245.8c7.5 0 13.7 6.2 13.7 13.7 0 7.5-6.2 13.7-13.7 13.7-7.5 0-13.7-6.2-13.7-13.7.1-7.5 6.1-13.7 13.7-13.7zm-127.1 0c7.5 0 13.7 6.2 13.7 13.7 0 7.5-6.2 13.7-13.7 13.7-7.5 0-13.7-6.2-13.7-13.7 0-7.5 6.1-13.7 13.7-13.7zm-50.2-198.8l-6.2-22c-1-3.4.4-5.8 1.4-7 .9-1.2 3-3.2 6.4-3.2H157l7.1 32.3-34.8-.1zm7.8 27.8h33l6.6 29.9h-31.1l-8.5-29.9zm30.3 86.1c-3.6 0-6.8-2.4-7.8-5.9l-6.3-22.4h29.4l6.2 28.2-21.5.1zm69.7 0h-19.7l-6.2-28.2H237l.1 28.2zm0-56.2h-32l-6.6-29.9h38.6v29.9zm0-57.7h-44.6l-7.1-32.3h51.8v32.3zM287 235.6h-22v-28.2h28l-6 28.2zm11.9-56.2H265v-29.9h40.2l-6.3 29.9zM265 121.7V89.3h52.8l-6.8 32.3h-46zm79.8 107.8c-.9 3.6-4.1 6.2-7.8 6.2h-21.4l6-28.2h28.8l-5.6 22zm12.4-50.1h-29.8l6.3-29.9h31l-7.5 29.9zM377 99.3l-5.5 22.2h-32l6.8-32.3h22.9c3.4 0 5.4 1.9 6.3 3.1 1 1.3 2.4 3.8 1.5 7zm0 0"/>
+    </svg>
+    </div>
+           <span>結帳去</span>
+        </a>
+      </div>
+  </div>
 </div>
 </div>
 </nav>
+</div>
 </template>
+
+<script>
+import $ from 'jquery'
+
+export default {
+  data () {
+    return {
+      cart: {
+        carts: [],
+        final_total: 0,
+        total: 0
+      },
+      status: {
+        delitem: ''
+      }
+    }
+  },
+  methods: {
+    getCart () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      this.axios.get(api).then((res) => {
+        console.log(res.data)
+        if (res.data.success) {
+          vm.cart = res.data.data
+        }
+      })
+    },
+    viewDetail (id) {
+      console.log(id)
+      this.$router.push(`/products/${id}`)
+    },
+    delCart (id) {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      vm.status.delitem = id
+      this.axios.delete(api).then((res) => {
+        console.log(res.data)
+        if (res.data.success) {
+          vm.getCart()
+          vm.status.delitem = ''
+        }
+      })
+    },
+    toggleCartbox () {
+      if ($('.cart-dropdown').hasClass('show')) {
+        $('.cart-dropdown').removeClass('show')
+        $('body').removeClass('show')
+      } else {
+        $('.cart-dropdown').addClass('show')
+        $('body').addClass('show')
+      }
+    }
+  },
+  created (id) {
+    this.getCart()
+  }
+}
+</script>

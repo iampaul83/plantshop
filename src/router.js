@@ -16,7 +16,7 @@ import AdminOrder from './components/admin/Order.vue'
 Vue.use(Router)
 
 export default new Router({
-  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
   routes: [
     {
       path: '/',
@@ -24,7 +24,7 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: 'products',
+          path: '',
           name: 'products',
           component: Products
         },
@@ -76,7 +76,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/products'
+      redirect: '/'
     }
   ]
 })

@@ -1,16 +1,43 @@
-.topNavbar{
-background: $white;
+body{
+  &.show{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    .overlay{
+      display: block;
+    }
+  }
+  .overlay{
+    display: none;
+  }
 }
-.topNavbar-link{
+.overlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  bottom: 0;
+  background: rgba($white, .6);
+}
+.topNavbar {
   position: relative;
-  &:after{
+  z-index: 10001;
+  background: $white;
+}
+
+.topNavbar-link {
+  position: relative;
+
+  &:after {
     content: "";
     position: absolute;
     border-left: 1px solid $gray-300;
     right: 0px;
     height: 100%;
   }
-  .active{
+
+  .active {
     color: $secondary;
   }
 }
@@ -19,7 +46,8 @@ background: $white;
   width: 125px;
   margin: 5px 0;
 }
-.icon-nav{
+
+.icon-nav {
   position: relative;
   @include width(50px);
   margin: 0 15px;
@@ -27,34 +55,42 @@ background: $white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  &.active,&.active:hover{
-    path{
-      fill:$secondary;
+
+  &.active,
+  &.active:hover {
+    path {
+      fill: $secondary;
     }
   }
-  &:hover{
-    path{
-      fill:$primary;
+
+  &:hover {
+    path {
+      fill: $primary;
     }
   }
-  svg{
+
+  svg {
     @include width(25px);
     margin: 2px auto;
   }
-  path{
-    fill:$gray-500;
+
+  path {
+    fill: $gray-500;
   }
-  &:before{
+
+  &:before {
     content: "";
     position: absolute;
     border-left: 1px solid $gray-300;
     left: -15px;
     height: 100%;
   }
-  .icon-text{
+
+  .icon-text {
     font-size: 0.78rem;
   }
-  .totalItems{
+
+  .totalItems {
     position: absolute;
     right: -2px;
     top: -5px;
@@ -65,3 +101,102 @@ background: $white;
     border-radius: 10px;
   }
 }
+
+
+.cart-dropdown {
+  position: relative;
+  &.show{
+    .cart-menu{
+      display: block;
+    }
+  }
+}
+
+.cart-menu {
+  display: none;
+  border-radius: 8px;
+  position: absolute;
+  right: 0;
+  top: 70px;
+  z-index: 10000;
+  min-width: 370px;
+  background: #fff;
+  border: 1px solid $gray-300;
+  
+  &:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    right: 23px;
+    z-index: 2;
+    top: -14px;
+    height: 0;
+    border-style: solid;
+    border-width: 0 13px 14px 13px;
+    border-color: transparent transparent #fff transparent;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    right: 22px;
+    top: -16px;
+    height: 0;
+    border-style: solid;
+    border-width: 0 14px 15px 14px;
+    border-color: transparent transparent  $gray-300 transparent;
+  }
+  .btn-del{
+    font-size: 13px;
+    padding: 4px 8px;
+    font-size: 13px;
+    &:hover{
+      color: $white;
+    }
+  }
+  .cart-img{
+    display: inline-block;
+    @include width(35px);
+    background-size: cover;
+    background-position: center
+  }
+  .cart-money{
+    font-size: 0.9rem;
+    color:$success;
+  }
+  .cart-title{
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+  .cart-unit {
+    font-size: 0.75rem;
+}
+}
+
+
+.cart-menu-scroll{
+  max-height: 30vh;
+  overflow-y: auto;
+  margin: 5px 0 15px;
+  border-bottom: 1px solid  $gray-300;
+}
+
+.btn-checkout{
+  border-radius: 30px;
+  padding: 4px;
+  &:hover{
+    .cart-icon {
+      path{
+        fill: $white;
+      }
+    }
+  }
+  .cart-icon {
+    width: 20px;
+    display: inline-block;
+    path{
+      fill:$primary;
+    }
+  }
+}
+
