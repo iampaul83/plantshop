@@ -25,7 +25,7 @@
               </td>
               <td class="align-middle">
               <div  class="cart-title"  >{{item.product.title}}</div>
-              <div class="cart-unit">{{item.qty}} / {{item.product.unit}}</div>
+              <div class="text-primary cart-unit">{{item.qty}} / {{item.product.unit}}</div>
               </td>
               <td class="align-middle text-right cart-money">{{item.total | currency}}</td>
             </tr>

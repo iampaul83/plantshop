@@ -6,7 +6,7 @@
     <div class="step-wrap d-flex ">
       <div class="step step01 flex-fill  active">
         <span class="font-Montserrat  num">1</span>
-        <div class="steptext text-primary">
+        <div class="steptext">
           輸入訂單資料
         </div>
       </div>
@@ -190,7 +190,8 @@ export default {
           this.axios.post(api, { 'data': vm.data }).then((res) => {
             console.log(res.data)
             if (res.data.success) {
-              // vm.$router.push('/payment')
+              const orderId = `/payment/${res.data.orderId}`
+              vm.$router.push(orderId)
             } else {
               vm.$bus.$emit('messsage:push', res.data.message)
             }

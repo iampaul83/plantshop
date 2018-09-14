@@ -208,6 +208,9 @@ body{
       color: #f0efe9;
       border-color: lighten($secondary, 2%);
     }
+    .steptext{
+      color: $primary;
+    }
   }
 }
 
@@ -249,7 +252,19 @@ body{
 .btn-backShop{
   font-size: .85rem;
 }
-
+.old-totalPrice{
+  font-size: 0.75rem;
+  text-decoration: line-through;
+}
+.payment-title{
+  font-size: 1.3rem;
+  font-weight: 400;
+  .icon{
+    font-size: 1rem;
+    color: $gray-500;
+    padding-right: 5px;
+  }
+}
 
 @media (max-width:365px) {
 
