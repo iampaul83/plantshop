@@ -2,9 +2,9 @@
 <div class="text-center signbox">
 <loading :active.sync="isLoading" ></loading>
 <form class="form-signin" @submit.prevent="login">
-  <div class="img">
+  <router-link to="/" class="d-inline-block img">
     <img class="mb-4 img-fluid" src="../assets/images/logo.png" alt="" >
-  </div>
+  </router-link>
   <div class="login-input  shadow">
     <h1 class="h5 mb-3 font-weight-light">會員登入</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
@@ -38,7 +38,7 @@ export default {
         vm.isLoading = false
         if (res.data.success) {
           console.log('signin')
-          // vm.$router.push('/admin')
+          vm.$router.push('/')
         }
       })
     }

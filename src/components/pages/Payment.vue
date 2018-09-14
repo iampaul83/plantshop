@@ -10,13 +10,13 @@
           輸入訂單資料
         </div>
       </div>
-      <div class="step step02 flex-fill   active">
+      <div class="step step02 flex-fill" :class="{'active': !order.is_paid}">
         <span class="font-Montserrat num">2</span>
         <div class="steptext ">
           金流付款
         </div>
       </div>
-      <div class="step step03 flex-fill ">
+      <div class="step step03 flex-fill " :class="{'active': order.is_paid}">
         <span class="font-Montserrat num">3</span>
         <div class="steptext">
           完成
@@ -58,7 +58,7 @@
     </table>
     <div class=" d-flex justify-content-end align-items-baseline px-2 pt-2">
         <span class="pr-3">總計</span>
-        <span class="h4 text-success">{{order.total | currency}}</span>
+        <span v-if="order.total" class="h4 text-success">{{order.total | currency}}</span>
       </div>
     </div>
   <div class="col-md-8 ">
@@ -96,14 +96,24 @@
       </tr>
     </tbody>
     </table>
-    <button type="submit" class="float-right mb-4 btn btn-danger text-white ">確認付款</button>
+
+    <button v-if="!order.is_paid"  @click="payOrder" class="float-right mb-4 btn btn-danger text-white ">確認付款</button>
+    <router-link to="/" v-else   @click="payOrder" class="float-right mb-4 btn btn-primary text-white "><i class="fas fa-caret-left"></i> 繼續購物</router-link>
  </div>
   </div>
+  <Alert></Alert>
+  <div class="overlay"></div>
   </div>
 </template>
 
 <script>
+
+import Alert from '../Alert.vue'
+
 export default {
+  components: {
+    Alert
+  },
   data () {
     return {
       isLoading: false,
@@ -121,6 +131,18 @@ export default {
         vm.isLoading = false
         if (res.data.success) {
           vm.order = res.data.order
+        }
+      })
+    },
+    payOrder () {
+      const vm = this
+      const id = vm.$route.params.order_id
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${id}`
+      this.axios.post(api).then((res) => {
+        console.log(res.data)
+        if (res.data.success) {
+          vm.getOrder()
+          vm.$bus.$emit('messsage:push', res.data.message, 'success')
         }
       })
     }

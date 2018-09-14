@@ -61,15 +61,15 @@ export default new Router({
       component: Dashboard,
       children: [
         {
-          path: 'coupons',
-          name: 'coupons',
-          component: AdminCoupon,
+          path: '',
+          name: 'items',
+          component: AdminItems,
           meta: { requiresAuth: true }
         },
         {
-          path: 'items',
-          name: 'items',
-          component: AdminItems,
+          path: 'coupons',
+          name: 'coupons',
+          component: AdminCoupon,
           meta: { requiresAuth: true }
         },
         {

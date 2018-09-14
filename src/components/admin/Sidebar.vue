@@ -9,7 +9,7 @@
   </h6>
   <ul class="nav flex-column">
     <li class="nav-item">
-    <router-link class="nav-link" to="/admin/items">
+    <router-link class="nav-link" to="/admin/">
       <span data-feather="home"></span>
       產品列表
     </router-link>

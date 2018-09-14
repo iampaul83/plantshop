@@ -14,6 +14,7 @@
 <script>
 import Sidebar from '../components/admin/Sidebar.vue'
 import AdminNavBar from '../components/admin/AdminNavbar.vue'
+import Alert from '../components/Alert.vue'
 
 export default {
   data () {
@@ -23,11 +24,8 @@ export default {
   },
   components: {
     Sidebar,
-    AdminNavBar
+    AdminNavBar,
+    Alert
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  @import '../assets/dashboard';
-</style>

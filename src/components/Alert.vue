@@ -1,6 +1,6 @@
 <template>
-<div class="message-alert">
-  <div class="alert"
+<div class="message-alert shadow">
+  <div class="alert mb-0"
     :class="'alert-' + item.status"
     v-for="(item, i) in messages" :key="i">
     {{ item.message }}
@@ -43,7 +43,7 @@ export default {
           }
         })
         document.querySelector('body').classList.remove('show')
-      }, 2500)
+      }, 1800)
     }
   },
   created () {
