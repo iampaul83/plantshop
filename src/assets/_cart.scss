@@ -19,7 +19,7 @@ body{
   right: 0;
   z-index: 10000;
   bottom: 0;
-  background: rgba($white, .6);
+  background: rgba($white, .65);
 }
 
   .cart-dropdown {
@@ -241,7 +241,10 @@ body{
   .cart-unit{
     font-size: 0.8rem;
   }
-
+  .list-item-total{
+    border-color: $gray-500;
+    background: lighten($bgColor, 7%);
+  }
 }
 .btn-backShop{
   font-size: .85rem;

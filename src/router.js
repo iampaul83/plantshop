@@ -7,6 +7,7 @@ import Detail from './components/pages/Detail.vue'
 import Login from './components/Login.vue'
 import Discount from './components/pages/Discount.vue'
 import Checkout from './components/pages/Checkout.vue'
+import Payment from './components/pages/Payment.vue'
 
 import Dashboard from './views/Dashboard.vue'
 import AdminItems from './components/admin/Items.vue'
@@ -42,6 +43,11 @@ export default new Router({
           path: 'checkout',
           name: 'checkout',
           component: Checkout
+        },
+        {
+          path: 'payment',
+          name: 'payment',
+          component: Payment
         }
       ]
     },

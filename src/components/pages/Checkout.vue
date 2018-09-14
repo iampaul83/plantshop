@@ -41,25 +41,26 @@
           </a>
         </div>
         <div>
-        <div  class="cart-img mt-2" :style="{backgroundImage : `url(${item.product.imageUrl})`}"></div>
+        <div  class="cart-img mt-2 mx-1" :style="{backgroundImage : `url(${item.product.imageUrl})`}"></div>
         </div>
-        <div>
-        <div  class="cart-title">{{item.product.title}}</div>
-        <div class="cart-unit">{{item.qty}} / {{item.product.unit}}</div>
+        <div class="ml-1 mr-auto">
+          <div  class="cart-title">{{item.product.title}}</div>
+          <div class="cart-unit">{{item.qty}} / {{item.product.unit}}</div>
+          <small  v-if="cart.final_total !== cart.total" class="text-info">已套用優惠眷</small>
         </div>
         <div class=" text-right text-success">{{item.total | currency}}</div>
       </li>
-      <li class="list-group-item d-flex justify-content-between" v-if="cart.final_total !== cart.total">
-        <span>則扣</span>
-        <strong class="h5 mb-0 text-success">123</strong>
-      </li>
-      <li class="list-group-item d-flex justify-content-between">
+      <li class="list-group-item mt-1  list-item-total  d-flex justify-content-between">
         <span>總額</span>
-        <strong class="h4 mb-0 text-success" v-if="cart.final_total">{{cart.final_total | currency}}</strong>
+        <strong class="h5 mb-0 text-success" v-if="cart.final_total">{{cart.total | currency}}</strong>
+      </li>
+      <li class="list-group-item list-item-total d-flex justify-content-between" v-if="cart.final_total !== cart.total">
+        <span class="text-info">折扣後</span>
+        <strong class="h5 mb-0 text-info" >{{cart.final_total | currency}}</strong>
       </li>
     </ul>
 
-    <form class="card p-2" @submit.prevent="cooupon">
+    <form class="card p-2" @submit.prevent="checkcoupon">
       <div class="input-group">
         <input type="text" class="form-control" v-model="coupon.code" placeholder="請輸入優惠碼">
         <div class="input-group-append">
@@ -67,7 +68,6 @@
         </div>
       </div>
     </form>
-    <div v-if="!status.coupon" class="alert alert-danger">{{message.coupon}}</div>
       <router-link to="/" class="btn btn-outline-primary btn-backShop mt-4 float-right"><i class="fas fa-caret-left"></i> 繼續購物</router-link>
   </div>
   <div class="col-lg-8 col-md-7 order-md-1">
@@ -102,21 +102,24 @@
         <textarea  rows="5" v-model="data.message"   class="form-control"  name="memo" id="memo" placeholder="">
         </textarea>
       </div>
-
- <div v-if="!status.order" class="alert alert-danger">{{message.order}}</div>
-
       <hr class="my-4">
       <button class="btn btn-primary btn-long btn-block"   type="submit">金流付款 <i class="fas fa-caret-right"></i></button>
     </form>
   </div>
 </div>
+    <Alert></Alert>
+    <div class="overlay"></div>
 </div>
 </template>
 
 <script>
 import $ from 'jquery'
+import Alert from '../Alert.vue'
 
 export default {
+  components: {
+    Alert
+  },
   data () {
     return {
       isLoading: false,
@@ -126,9 +129,7 @@ export default {
         total: 0
       },
       status: {
-        delitem: '',
-        order: true,
-        coupon: true
+        delitem: ''
       },
       data: {
         user: {
@@ -138,10 +139,6 @@ export default {
           address: ''
         },
         message: ''
-      },
-      message: {
-        order: '',
-        coupon: ''
       },
       coupon: {
         code: ''
@@ -173,37 +170,31 @@ export default {
         }
       })
     },
-    cooupon () {
+    checkcoupon () {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       this.axios.post(api, { 'data': vm.coupon }).then((res) => {
         console.log(res.data)
         if (res.data.success) {
-          vm.status.coupon = true
-          vm.message.coupon = res.data.message
+          vm.getCart()
         } else {
-          vm.status.coupon = false
-          vm.message.coupon = res.data.message
+          vm.$bus.$emit('messsage:push', res.data.message)
         }
       })
     },
     submitOrder () {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
-
       this.$validator.validate().then(result => {
         if (result) {
-          console.log('OK')
           this.axios.post(api, { 'data': vm.data }).then((res) => {
             console.log(res.data)
             if (res.data.success) {
+              // vm.$router.push('/payment')
             } else {
-              vm.status.order = false
-              vm.errorMessage.order = res.data.messages
+              vm.$bus.$emit('messsage:push', res.data.message)
             }
           })
-        } else {
-          console.log('填入資料')
         }
       })
     }
