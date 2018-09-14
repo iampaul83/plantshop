@@ -1,0 +1,256 @@
+
+body{
+  &.show{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    .overlay{
+      display: block;
+    }
+  }
+  .overlay{
+    display: none;
+  }
+}
+.overlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  bottom: 0;
+  background: rgba($white, .6);
+}
+
+  .cart-dropdown {
+    position: fixed;
+    z-index: 10001;
+    right: 30px;
+    bottom: 45px;
+    .icon-nav{
+      border-radius: 100%;
+      border: 2px solid $gray-400;
+      @include width(70px);
+     background: rgba(255, 255, 255, 0.8);
+      &:before {
+        display: none;
+      }
+      .totalItems {
+        position: absolute;
+        right: 4px;
+        top: 1px;
+        background: #e67676;
+        color: $white;
+        padding: 0 6px;
+        font-size: 0.7rem;
+        border-radius: 10px;
+      }
+    }
+  &.show{
+    .cart-menu{
+      display: block;
+    }
+  }
+}
+
+.cart-img{
+  display: inline-block;
+  @include width(35px);
+  background-size: cover;
+  background-position: center
+}
+.cart-menu {
+  display: none;
+  border-radius: 8px;
+  position: absolute;
+  right: 0;
+  bottom: 90px;
+  z-index: 10000;
+  min-width: 370px;
+  background: #fff;
+  border: 1px solid $gray-300;
+  
+  &:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    right: 23px;
+    z-index: 2;
+    bottom: -14px;
+    height: 0;
+    border-style: solid;
+    border-width: 14px 13px 0 13px;
+    border-color: #fff transparent transparent  transparent;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    right: 22px;
+    bottom: -16px;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 14px 0 14px;
+    border-color:  $gray-300 transparent transparent  transparent;
+  }
+  .btn-del{
+    font-size: 13px;
+    padding: 4px 8px;
+    font-size: 13px;
+    &:hover{
+      color: $white;
+    }
+  }
+
+  .cart-money{
+    font-size: 0.9rem;
+    color:$success;
+  }
+  .cart-title{
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+  .cart-unit {
+    font-size: 0.75rem;
+}
+}
+.cartPage-img{
+  display: inline-block;
+  @include width(80px);
+  background-size: cover;
+  background-position: center
+}
+
+.cart-menu-scroll{
+  max-height: 30vh;
+  overflow-y: auto;
+  margin: 5px 0 15px;
+  border-bottom: 1px solid  $gray-300;
+}
+
+.btn-checkout{
+  border-radius: 30px;
+  padding: 4px;
+  background: #fff !important;
+  color: $primary !important;
+  &:hover{
+    background: $primary !important;
+     color: $white !important;
+    .cart-icon {
+      path{
+        fill: $white;
+      }
+    }
+  }
+  .cart-icon {
+    width: 20px;
+    display: inline-block;
+    path{
+      fill:$primary;
+    }
+  }
+}
+
+
+
+
+
+.step-wrap {
+   max-width:320px;
+   width: 100%;
+   margin: 0 auto;
+   .steptext {
+    font-size: .9rem;
+}
+  .step {
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 35px 5px 25px;
+    text-align: center;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 92px;
+      left: 53px;
+      right: 0;
+      top: 23px;
+      height: 5px;
+      z-index: -1;
+      background: $gray-200;
+    }
+
+    &.step03 {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .num {
+    @include width(46px);
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 46px;
+    background: #f0efe9;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 13px #d7d7d7;
+    border-radius: 100%;
+    margin-bottom: 8px;
+  }
+
+  .active {
+    .num {
+      background: lighten($secondary, 5%);
+      color: #f0efe9;
+      border-color: lighten($secondary, 2%);
+    }
+  }
+}
+
+
+
+.checkout-form{
+  label{
+    font-size: .95rem;
+  }
+}
+
+.check-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $primary;
+}
+
+.checkout-cart{
+  .btn-del{
+    &:hover{
+      color: $info;
+    }
+  }
+  .cart-img{
+    @include width(42px);
+  }
+  .cart-title{
+    color: $body-color;
+    font-size: 0.9rem;
+  }
+  .cart-unit{
+    font-size: 0.8rem;
+  }
+
+}
+.btn-backShop{
+  font-size: .85rem;
+}
+
+
+@media (max-width:365px) {
+
+  .step-wrap .step {
+    margin: 55px 8px 25px;
+  }
+}

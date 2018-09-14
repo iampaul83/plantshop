@@ -44,6 +44,7 @@
       </div>
     </div>
   </div>
+  <Cart></Cart>
 </div>
 </template>
 
@@ -51,6 +52,8 @@
 import Product from './pages/Product.vue'
 import Pagination from './pages/Pagination.vue'
 import Slider from './pages/slider.vue'
+import Cart from './pages/Cart.vue'
+
 export default {
   data () {
     return {
@@ -65,7 +68,8 @@ export default {
   components: {
     Product,
     Pagination,
-    Slider
+    Slider,
+    Cart
   },
   created () {
     this.getProductAll()

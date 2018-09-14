@@ -43,6 +43,7 @@
         </div>
       </div>
     </div>
+      <Cart></Cart>
 </div>
 </template>
 
@@ -50,6 +51,7 @@
 import $ from 'jquery'
 import Numcoount from './Numcount.vue'
 import Slider from './slider.vue'
+import Cart from './Cart.vue'
 
 export default {
   data () {
@@ -69,7 +71,8 @@ export default {
   },
   components: {
     Numcoount,
-    Slider
+    Slider,
+    Cart
   },
   methods: {
     getProdust (Id) {
@@ -107,6 +110,7 @@ export default {
           vm.alertAddcart(id)
         }
       })
+      this.$bus.$emit('regetCart')
     },
     buyAmount (num) {
       this.buyNum = num

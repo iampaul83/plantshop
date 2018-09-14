@@ -11,6 +11,7 @@ import VeeValidate from 'vee-validate'
 import zhTWvalidate from 'vee-validate/dist/locale/zh_TW'
 
 import Currency from './filters/currency'
+import './bus'
 
 Vue.use(VeeValidate)
 Vue.use(VueAxios, axios)

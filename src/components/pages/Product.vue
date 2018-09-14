@@ -69,6 +69,7 @@ export default {
           vm.alertAddcart(id)
         }
       })
+      this.$bus.$emit('regetCart')
     }
   }
 }
