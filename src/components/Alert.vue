@@ -54,7 +54,6 @@ export default {
     vm.$bus.$on('messsage:push', (message, status = 'danger') => {
       vm.updateMessage(message, status)
     })
-    // vm.$bus.$emit('message:push')
   }
 }
 </script>

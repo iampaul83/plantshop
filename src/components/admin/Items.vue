@@ -1,9 +1,11 @@
 <template>
   <div class="pt-4">
   <loading :active.sync="isLoading" ></loading>
+  <div class="btn-group" role="group" >
   <button type="button" class="btn btn-primary " @click="openModal(true)">
   新增產品
   </button>
+  </div>
     <table  class="table table-sm mt-3">
       <thead>
       <th width="120">分類</th>
@@ -24,8 +26,10 @@
             <span v-else>未啟用</span>
           </td>
           <td>
+           <div class="btn-group" role="group" >
             <button class="btn btn-outline-primary" @click="openModal(false, item)">編輯</button>
             <button class="btn btn-outline-danger" @click="delectProduct(item)">刪除</button>
+            </div>
           </td>
         </tr>
       </tbody>
