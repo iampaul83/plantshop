@@ -98,7 +98,7 @@
     </table>
 
     <button v-if="!order.is_paid"  @click="payOrder" class="float-right mb-4 btn btn-danger text-white ">確認付款</button>
-    <router-link to="/" v-else   @click="payOrder" class="float-right mb-4 btn btn-primary text-white "><i class="fas fa-caret-left"></i> 繼續購物</router-link>
+    <router-link to="/" v-else    class="float-right mb-4 btn btn-primary text-white "><i class="fas fa-caret-left"></i> 繼續購物</router-link>
  </div>
   </div>
   <Alert></Alert>
@@ -143,12 +143,15 @@ export default {
         if (res.data.success) {
           vm.getOrder()
           vm.$bus.$emit('messsage:push', res.data.message, 'success')
+          console.log(res.data, '635466')
         }
       })
     }
   },
   created () {
     this.getOrder()
+    // eslint-disable-next-line
+    mixpanel.track('Purchase')
   }
 }
 </script>

@@ -155,6 +155,14 @@ export default {
         if (res.data.success) {
           vm.cart = res.data.data
           vm.isLoading = false
+          // eslint-disable-next-line
+          mixpanel.track('begin_checkout')
+          // eslint-disable-next-line
+          gtag('event', 'add_to_cart', {
+            'value': res.data.data.final_total,
+            'currency': 'TWD',
+            'items': res.data.data.carts
+          })
         }
       })
     },

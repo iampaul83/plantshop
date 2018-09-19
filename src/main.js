@@ -43,6 +43,14 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.afterEach((to, from) => {
+  // eslint-disable-next-line
+  gtag('config', 'UA-124749927-2', {
+    'page_title': to.name,
+    'page_path': to.path
+  })
+})
+
 new Vue({
   router,
   render: h => h(App)

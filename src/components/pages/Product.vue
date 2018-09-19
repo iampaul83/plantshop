@@ -67,6 +67,19 @@ export default {
         if (res.data.success) {
           vm.status.getProductId = ''
           vm.alertAddcart(id)
+          // eslint-disable-next-line
+          mixpanel.track('AddToCart', {
+            'item': res.data.data.product.title,
+            'types': res.data.data.product.category,
+            'value': res.data.data.product.price,
+            'currency': 'TWD'
+          })
+          // eslint-disable-next-line
+          gtag('event', 'add_to_cart', {
+            'value': res.data.data.product.price,
+            'currency': 'TWD',
+            'items': res.data.data.product.title
+          })
         }
       })
       this.$bus.$emit('regetCart')

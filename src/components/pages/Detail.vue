@@ -84,6 +84,12 @@ export default {
         if (res.data.success) {
           vm.product = Object.assign({}, res.data.product)
           vm.isLoading = false
+          // eslint-disable-next-line
+          mixpanel.track('ViewContent')
+          // eslint-disable-next-line
+          gtag('event', 'view_item', {
+            'items': res.data.product
+          })
         }
       })
     },
@@ -108,6 +114,13 @@ export default {
         if (res.data.success) {
           vm.status.getProductId = ''
           vm.alertAddcart(id)
+          // eslint-disable-next-line
+          mixpanel.track('AddToCart', {
+            'item': res.data.data.product.title,
+            'types': res.data.data.product.category,
+            'value': res.data.data.product.price,
+            'currency': 'TWD'
+          })
         }
       })
       this.$bus.$emit('regetCart')
