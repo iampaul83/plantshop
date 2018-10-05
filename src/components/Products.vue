@@ -60,32 +60,30 @@ export default {
   },
   methods: {
     getProductAll () {
-      const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      vm.isLoading = true
+      this.isLoading = true
       // 取得產品分類
       this.axios.get(api).then((res) => {
         if (res.data.success) {
-          vm.categoryList = res.data.products.map((item) => item.category)
+          this.categoryList = res.data.products.map((item) => item.category)
             .filter((item, index, arr) => {
               return arr.indexOf(item) === index
             })
-          vm.categoryList.unshift('全部商品')
-          vm.products = Object.assign([], res.data.products)
-          vm.isLoading = false
+          this.categoryList.unshift('全部商品')
+          this.products = Object.assign([], res.data.products)
+          this.isLoading = false
         }
       })
     },
     getPageProduct (page = 1) {
-      const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
-      vm.isLoading = true
+      this.isLoading = true
       // 取得每頁產品分類
       this.axios.get(api).then((res) => {
         if (res.data.success) {
-          vm.pageProduct = Object.assign([], res.data.products)
-          vm.pagination = Object.assign([], res.data.pagination)
-          vm.isLoading = false
+          this.pageProduct = Object.assign([], res.data.products)
+          this.pagination = Object.assign([], res.data.pagination)
+          this.isLoading = false
         }
       })
     },
