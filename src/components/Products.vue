@@ -8,7 +8,8 @@
       <!-- 左側選單 (List group) -->
       <div class="list-group sticky-top">
         <a href="javascript:;" class="list-group-item list-group-item-action" v-for="item in categoryList" :key="item"  @click.prevent="category = item" :class="{'active': category == item}" data-toggle="list" >
-          <i class="fa fa-gift" aria-hidden="true"></i> {{item}}</a>
+          <i class="fa fa-gift" aria-hidden="true"></i> {{item}}
+        </a>
       </div>
     </div>
     <div class="col-md-9">
@@ -19,7 +20,7 @@
           <Pagination :page="pagination" @goToPage="changePage"></Pagination>
         </div>
         <div class="tab-pane active" v-else>
-          <Product :products="products.filter(item => item.category == category)"></Product>
+          <Product :products="filteredProjects"></Product>
         </div>
       </div>
     </div>
@@ -34,6 +35,7 @@ import Product from './pages/Product.vue'
 import Pagination from './pages/Pagination.vue'
 import Slider from './pages/slider.vue'
 import Cart from './pages/Cart.vue'
+import _ from 'lodash'
 
 export default {
   data () {
@@ -43,7 +45,6 @@ export default {
       products: [],
       pagination: [],
       isLoading: false,
-      categoryList: []
     }
   },
   components: {
@@ -58,6 +59,21 @@ export default {
     // eslint-disable-next-line
     mixpanel.track('PageView')
   },
+  computed: {
+    categoryList () {
+      // Get categoryList
+      const categoryList = _.chain(this.products)
+        .groupBy((item) => item.category)
+        .keys()
+        .value()
+      // Add 全部商品
+      categoryList.unshift('全部商品')
+      return categoryList;
+    },
+    filteredProjects () {
+      return this.products.filter(item => item.category === this.category)
+    }
+  },
   methods: {
     getProductAll () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
@@ -65,12 +81,7 @@ export default {
       // 取得產品分類
       this.axios.get(api).then((res) => {
         if (res.data.success) {
-          this.categoryList = res.data.products.map((item) => item.category)
-            .filter((item, index, arr) => {
-              return arr.indexOf(item) === index
-            })
-          this.categoryList.unshift('全部商品')
-          this.products = Object.assign([], res.data.products)
+          this.products = res.data.products
           this.isLoading = false
         }
       })
@@ -81,8 +92,8 @@ export default {
       // 取得每頁產品分類
       this.axios.get(api).then((res) => {
         if (res.data.success) {
-          this.pageProduct = Object.assign([], res.data.products)
-          this.pagination = Object.assign([], res.data.pagination)
+          this.pageProduct = res.data.products
+          this.pagination = res.data.pagination
           this.isLoading = false
         }
       })
